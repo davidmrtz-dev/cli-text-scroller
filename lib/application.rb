@@ -3,7 +3,7 @@ require_relative './interactors/display_interactor'
 require_relative './interactors/serial_interactor'
 
 class Application
-  @state = nil
+  @setup = nil
 
   class << self
     include States
@@ -11,30 +11,37 @@ class Application
 
     def setup
       DisplayInteractor.welcome
-      sleep 2
-      DisplayInteractor.clear_screen
-      sleep 1
-      @state = AppState.new
+      @setup ||= AppState.new
     end
 
     def run
-      connect if @state.connecting?
-      in_menu if @state.in_menu?
+      connecting if @setup.connecting?
+      connected if @setup.connected?
+      performing if @setup.performing?
     end
 
     private
 
-    def connect
-      DisplayInteractor.trying_to_connect
+    def connecting
+      SerialInteractor.setup(@setup) unless SerialInteractor.connected
       sleep 1
-      @state.connect if SerialInteractor.connected
     end
 
-    def in_menu
-      DisplayInteractor.connected
+    def connected
+      DisplayInteractor.print_menu
+      selection = gets.chomp
+      @setup.perform && DisplayInteractor.print_perfom if selection.eql?('1')
       sleep 1
-      DisplayInteractor.in_menu
+    end
+
+    def performing
+      SerialInteractor.send_data(@setup, 'req-an-01')
+      response = SerialInteractor.read_data(@setup)
+      if response.eql?('req-an-01')
+        SerialInteractor.send_data(@setup, 'con-an-01')
+      end
       sleep 1
+      @setup.connect
     end
   end
 end
