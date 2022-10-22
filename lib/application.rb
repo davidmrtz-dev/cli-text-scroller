@@ -37,9 +37,7 @@ class Application
     def performing
       SerialInteractor.send_data(@setup, 'req-an-01')
       response = SerialInteractor.read_data(@setup)
-      if response.eql?('req-an-01')
-        SerialInteractor.send_data(@setup, 'con-an-01')
-      end
+      SerialInteractor.send_data(@setup, 'con-an-01') if response.eql?('req-an-01')
       sleep 1
       @setup.connect
     end
