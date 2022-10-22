@@ -1,7 +1,9 @@
 module Services
   class HandShakeService
-    def self.ok
-      puts 'ok'
+    class << self
+      def execute
+        puts 'okok'
+      end
     end
   end
 end

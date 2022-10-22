@@ -3,24 +3,40 @@ module Interactors
     CLEAR_SCREEN = "\e[H\e[2J".freeze
 
     class << self
+      # INTERFACE
       def welcome
+        clear_screen
         puts 'Welcome'
+        puts 'connecting...'
       end
 
-      def clear_screen
-        puts CLEAR_SCREEN
+      def print_menu
+        clear_screen
+        puts 'MENU.'
+        puts '1. START.'
+        puts '2. SILENCE MODE.'
       end
 
-      def trying_to_connect
-        puts 'trying to connect...'
+      def print_perfom
+        clear_screen
+        puts 'Performing...'
       end
 
-      def connected
+      # LOGGING
+      def device_not_connected
+        puts 'device not connected'
+      end
+
+      def device_disconnected
+        puts 'device disconnected'
+      end
+
+      def print_connected
         puts 'connected'
       end
 
-      def in_menu
-        puts 'in menu'
+      def clear_screen
+        print CLEAR_SCREEN
       end
     end
   end

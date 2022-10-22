@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 require 'aasm'
 require 'pry'
+require 'serialport'
 require_relative './lib/application'
 
 class RunTime

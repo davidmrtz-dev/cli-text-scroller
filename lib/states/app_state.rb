@@ -4,15 +4,20 @@ module States
 
     aasm do
       state :connecting, initial: true
-      state :in_menu
+      state :connected
+      state :performing
 
       event :connect do
-        transitions from: :connecting, to: :in_menu, if: :connecting?
+        transitions from: :connecting, to: :connected, if: :connecting?
       end
-    end
 
-    def initialize(config = { connected: false })
-      @config = config
+      event :perform do
+        transitions from: :connected, to: :performing, if: :connected?
+      end
+
+      event :reset do
+        transitions from: :performing, to: :connecting, if: :performing?
+      end
     end
   end
 end
