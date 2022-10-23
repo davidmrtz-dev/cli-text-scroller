@@ -4,9 +4,10 @@ require_relative './interactors/serial_interactor'
 require_relative './services/scroller_service'
 
 class Application
-  REQUEST_ANIMATION = 'req-an-01'.freeze
-  CONFIRM_REQUEST = 'con-an-01'.freeze
-  FINISHED_ANIMATION = 'cust-ends'.freeze
+  REQUEST_ANIMATION = 'req-an-01'
+  CONFIRM_REQUEST = 'con-an-01'
+  FINISHED_ANIMATION = 'cust-ends'
+
   @setup = nil
 
   class << self
@@ -35,7 +36,6 @@ class Application
     def connected
       DisplayInteractor.print_menu
       selection = gets.chomp
-      puts 'hello'
       @setup.perform && DisplayInteractor.print_listening if selection.eql?('1')
       sleep 1
     end
