@@ -1,5 +1,5 @@
 module Services
-  class HandShakeService
+  class ScrollerService
     class << self
       def execute
         puts 'okok'

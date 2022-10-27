@@ -12,14 +12,12 @@ module Interactors
 
       def print_menu
         clear_screen
-        puts 'MENU.'
         puts '1. START.'
-        puts '2. SILENCE MODE.'
       end
 
-      def print_perfom
+      def print_listening
         clear_screen
-        puts 'Performing...'
+        puts 'Displaying & Listening...'
       end
 
       # LOGGING

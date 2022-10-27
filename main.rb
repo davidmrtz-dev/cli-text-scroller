@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 require 'aasm'
-require 'pry'
+require 'byebug'
 require 'serialport'
 require_relative './lib/application'
 
