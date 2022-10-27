@@ -4,9 +4,9 @@ require_relative './interactors/serial_interactor'
 require_relative './services/scroller_service'
 
 class Application
-  REQUEST_ANIMATION = 'req-an-01'
-  CONFIRM_REQUEST = 'con-an-01'
-  FINISHED_ANIMATION = 'cust-ends'
+  REQUEST_ANIMATION = 'req-an-01'.freeze
+  CONFIRM_REQUEST = 'con-an-01'.freeze
+  FINISHED_ANIMATION = 'cust-ends'.freeze
 
   @setup = nil
 
