@@ -1,1 +1,1 @@
-# cli-text-scrolle
+# cli-text-scroller
